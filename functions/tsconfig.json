@@ -1,17 +1,19 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
+    "target": "ES2020",                      // ← Mejora compatibilidad con librerías modernas
+    "module": "CommonJS",                    // ← Recomendado para Firebase Functions
+    "lib": ["es2020"],                       // ← Librerías modernas
+    "moduleResolution": "node",              // ← Compatible con "commonjs"
     "esModuleInterop": true,
-    "moduleResolution": "nodenext",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "outDir": "lib",
+    "rootDir": "src",                        // ← Asegura estructura src → lib
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "skipLibCheck": true                     // ← Evita errores con node_modules como el de @google-cloud
   },
   "compileOnSave": true,
-  "include": [
-    "src"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

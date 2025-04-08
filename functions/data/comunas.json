@@ -1,0 +1,222 @@
+{
+    "Valparaiso": [
+      {
+        "city": "Concon"
+      },
+      {
+        "city": "Llaillay"
+      },
+      {
+        "city": "Los Maitenes"
+      },
+      {
+        "city": "Puchuncavi"
+      },
+      {
+        "city": "Putaendo"
+      },
+      {
+        "city": "Quillota"
+      },
+      {
+        "city": "Quilpue"
+      },
+      {
+        "city": "Quintero"
+      },
+      {
+        "city": "San Antonio"
+      },
+      {
+        "city": "San Felipe"
+      },
+      {
+        "city": "Valparaiso"
+      },
+      {
+        "city": "Vina del Mar"
+      }
+    ],
+    "Antofagasta": [
+    {
+      "city": "Calama"
+    },
+    {
+      "city": "Tocopilla"
+    }
+  ],"Araucania":[
+    {
+      "city": "Angol"
+    },
+    {
+      "city": "Loncoche"
+    },
+    {
+      "city": "Padre las Casas"
+    },
+    {
+      "city": "Pitrufquen"
+    },
+    {
+      "city": "Temuco"
+    },
+    {
+      "city": "Traiguen"
+    },
+    {
+      "city": "Victoria"
+    },
+    {
+      "city": "Villarrica"
+    }
+  ],
+  "Arica y Parinacota":[{"city":"Arica"}],
+  "Atacama": [
+    {
+      "city": "Copiapo"
+    },
+    {
+      "city": "Huasco"
+    }
+  ],
+  "Aysen": [
+    {
+      "city": "Aysen"
+    },
+    {
+      "city": "Cochrane"
+    },
+    {
+      "city": "Coyhaique"
+    }
+  ],
+  "Biobio": [
+    {
+      "city": "Chillan"
+    },
+    {
+      "city": "Concepcion"
+    },
+    {
+      "city": "Coronel"
+    },
+    {
+      "city": "Hualpen"
+    },
+    {
+      "city": "Laja"
+    },
+    {
+      "city": "Los Ángeles"
+    },
+    {
+      "city": "Lota"
+    },
+    {
+      "city": "Nacimiento"
+    },
+    {
+      "city": "San Carlos"
+    },
+    {
+      "city": "Talcahuano"
+    },
+    {
+      "city": "Tome"
+    }
+  ],
+  "Coquimbo": [
+    {
+      "city": "Coquimbo"
+    },
+    {
+      "city": "Cuncumen"
+    },
+    {
+      "city": "La Serena"
+    }
+  ],
+  "Los Lagos": [
+    {
+      "city": "Osorno"
+    },
+    {
+      "city": "Puerto Montt"
+    },
+    {
+      "city": "Puerto Varas"
+    }
+  ],
+  "Los Rios": [
+    {
+      "city": "La Union"
+    },
+    {
+      "city": "Valdivia"
+    }
+  ],
+  "Magallanes": [
+    {
+      "city": "Punta Arenas"
+    }
+  ],
+  "Maule": [
+    {
+      "city": "Cauquenes"
+    },
+    {
+      "city": "Curico"
+    },
+    {
+      "city": "Linares"
+    },
+    {
+      "city": "Talca"
+    }
+  ],
+  "O'Higgins": [
+    {
+      "city": "Placilla"
+    },
+    {
+      "city": "Rancagua"
+    }
+  ],
+  "Santiago Metropolitan": [
+    {
+      "city": "Curacavi"
+    },
+    {
+      "city": "Las Condes"
+    },
+    {
+      "city": "Los Cerrillos"
+    },
+    {
+      "city": "Penaflor"
+    },
+    {
+      "city": "Pudahuel"
+    },
+    {
+      "city": "Puente Alto"
+    },
+    {
+      "city": "Quilicura"
+    },
+    {
+      "city": "San Gabriel"
+    },
+    {
+      "city": "Santiago"
+    },
+    {
+      "city": "Talagante"
+    }
+  ],
+  "Tarapaca": [
+    {
+      "city": "Alto Hospicio"
+    }
+  ]
+  }
