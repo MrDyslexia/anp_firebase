@@ -19,19 +19,17 @@ export const fetchDailyMeasurements = onSchedule(
     for (const regionDoc of regionesSnapshot.docs) {
       const region = regionDoc.data();
       const regionId = regionDoc.id;
-
       const comunasSnapshot = await db
         .collection("comunas")
         .where("regionRef", "==", regionDoc.ref)
         .get();
 
       for (const comunaDoc of comunasSnapshot.docs) {
-        const comuna = comunaDoc.data().nombre;
-
+        const comuna = comunaDoc.data().name;
         try {
-          const pollution = await getPollutionDataForComuna(comuna, region.nombre);
+          const pollution = await getPollutionDataForComuna(comuna, region.name);
           if (!pollution) {
-            logger.warn(`⚠️ Sin datos para ${comuna} (${region.nombre})`);
+            logger.warn(`⚠️ Sin datos para ${comuna} (${region.name})`);
             continue;
           }
 
@@ -48,7 +46,7 @@ export const fetchDailyMeasurements = onSchedule(
           await emitOnDataReadEvent(medicion);
           logger.info(`✅ Medición registrada y evento emitido para ${comuna}`);
         } catch (err: any) {
-          logger.error(`❌ Error al procesar ${comuna} (${region.nombre})`, {
+          logger.error(`❌ Error al procesar ${comuna} (${region.name})`, {
             error: err?.message || err,
           });
         }

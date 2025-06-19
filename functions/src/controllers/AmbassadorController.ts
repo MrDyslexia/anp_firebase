@@ -22,19 +22,16 @@ export async function getPollutionDataForComuna(
   comuna: string,
   region: string
 ): Promise<AirPollutionData | null> {
-  const url = `${API_URL}/v2/nearest_city?key=${API_KEY}&city=${encodeURIComponent(comuna)}&state=${encodeURIComponent(region)}&country=Chile`;
-
+  const url = `${API_URL}city?city=${comuna}&state=${region}&country=chile&key=${API_KEY}`;
+  logger.warn(`⚠️${url}`);
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     try {
       const response = await axios.get(url, { timeout: TIMEOUT });
       const pollution = response.data?.data?.current?.pollution;
-
       if (response.status !== 200 || !pollution || pollution.aqius == null) {
         throw new Error("Respuesta inválida o sin datos de contaminación");
       }
-
       logger.info(`✔️ [Ambassador] ${comuna}, intento ${attempt}: AQI=${pollution.aqius}`);
-
       return {
         aqi: pollution.aqius,
         ts: pollution.ts,
