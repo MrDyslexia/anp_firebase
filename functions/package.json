@@ -11,7 +11,8 @@
     "logs": "firebase functions:log",
     "run-airquality": "ts-node src/triggers/index.ts",
     "list-collections": "ts-node src/triggers/listCollections.ts",
-    "seed:firestore": "ts-node src/scripts/populateFirestore.ts"
+    "seed:firestore": "ts-node src/scripts/populateFirestore.ts",
+    "format": "prettier --write 'src/**/*.{ts,js}'"
   },
   "engines": {
     "node": "20"

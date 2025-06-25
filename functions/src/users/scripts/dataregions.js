@@ -10,26 +10,30 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-const regionesJson = JSON.parse(fs.readFileSync('../../data/regions.json', 'utf-8')).data;
-const comunasJson = JSON.parse(fs.readFileSync('../../data/comunas.json', 'utf-8'));
+const regionesJson = JSON.parse(
+  fs.readFileSync('../../data/regions.json', 'utf-8')
+).data;
+const comunasJson = JSON.parse(
+  fs.readFileSync('../../data/comunas.json', 'utf-8')
+);
 
 // Mapa de nombres de región a su número característico
 const regionNumbers = {
-  "Arica y Parinacota": 15,
-  "Tarapaca": 1,
-  "Antofagasta": 2,
-  "Atacama": 3,
-  "Coquimbo": 4,
-  "Valparaiso": 5,
+  'Arica y Parinacota': 15,
+  Tarapaca: 1,
+  Antofagasta: 2,
+  Atacama: 3,
+  Coquimbo: 4,
+  Valparaiso: 5,
   "O'Higgins": 6,
-  "Maule": 7,
-  "Biobio": 8,
-  "Araucania": 9,
-  "Los Lagos": 10,
-  "Aysen": 11,
-  "Magallanes": 12,
-  "Santiago Metropolitan": 13,
-  "Los Rios": 14
+  Maule: 7,
+  Biobio: 8,
+  Araucania: 9,
+  'Los Lagos': 10,
+  Aysen: 11,
+  Magallanes: 12,
+  'Santiago Metropolitan': 13,
+  'Los Rios': 14
 };
 
 async function populateFirestore() {
@@ -42,7 +46,9 @@ async function populateFirestore() {
     const regionId = regionNumbers[regionName];
 
     if (!regionId) {
-      console.warn(`⚠️ No se encontró número para la región "${regionName}". Se omite.`);
+      console.warn(
+        `⚠️ No se encontró número para la región "${regionName}". Se omite.`
+      );
       continue;
     }
 
@@ -64,7 +70,9 @@ async function populateFirestore() {
     const regionRef = regionRefs[regionName];
 
     if (!regionRef) {
-      console.warn(`⚠️ Región no encontrada para ${regionName}, se omiten sus comunas.`);
+      console.warn(
+        `⚠️ Región no encontrada para ${regionName}, se omiten sus comunas.`
+      );
       continue;
     }
 
@@ -78,7 +86,9 @@ async function populateFirestore() {
         regionRef: regionRef
       });
 
-      console.log(`🏙️ Comuna creada: ${comunaObj.city} (Región: ${regionName})`);
+      console.log(
+        `🏙️ Comuna creada: ${comunaObj.city} (Región: ${regionName})`
+      );
     }
   }
 

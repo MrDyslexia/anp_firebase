@@ -1,6 +1,6 @@
-import axios from "axios";
-import * as logger from "firebase-functions/logger";
-import * as dotenv from "dotenv";
+import axios from 'axios';
+import * as logger from 'firebase-functions/logger';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -23,27 +23,33 @@ export async function getPollutionDataForComuna(
   region: string
 ): Promise<AirPollutionData | null> {
   const url = `${API_URL}city?city=${comuna}&state=${region}&country=chile&key=${API_KEY}`;
-  logger.warn(`⚠️${url}`);
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     try {
-      const response = await axios.get(url, { timeout: TIMEOUT });
+      const response = await axios.get(url, {timeout: TIMEOUT});
       const pollution = response.data?.data?.current?.pollution;
       if (response.status !== 200 || !pollution || pollution.aqius == null) {
-        throw new Error("Respuesta inválida o sin datos de contaminación");
+        throw new Error('Respuesta inválida o sin datos de contaminación');
       }
-      logger.info(`✔️ [Ambassador] ${comuna}, intento ${attempt}: AQI=${pollution.aqius}`);
+      logger.info(
+        `✔️ [Ambassador] ${comuna}, intento ${attempt}: AQI=${pollution.aqius}`
+      );
       return {
         aqi: pollution.aqius,
         ts: pollution.ts,
         mainPollutant: pollution.mainus,
-        fuenteCiudad: response.data?.data?.city || comuna,
+        fuenteCiudad: response.data?.data?.city || comuna
       };
     } catch (err: any) {
-      const message = err?.response?.data?.message || err.message || "Error desconocido";
-      logger.warn(`⚠️ [Ambassador] Fallo intento ${attempt} para ${comuna}: ${message}`);
+      const message =
+        err?.response?.data?.message || err.message || 'Error desconocido';
+      logger.warn(
+        `⚠️ [Ambassador] Fallo intento ${attempt} para ${comuna}: ${message}`
+      );
 
       if (attempt === MAX_RETRIES) {
-        logger.error(`❌ [Ambassador] Fallo definitivo para ${comuna} tras ${MAX_RETRIES} intentos`);
+        logger.error(
+          `❌ [Ambassador] Fallo definitivo para ${comuna} tras ${MAX_RETRIES} intentos`
+        );
         return null;
       }
 
@@ -55,37 +61,37 @@ export async function getPollutionDataForComuna(
 }
 
 function delay(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 export async function fetchAirQualityFromAPI(comuna: string, region: string) {
   if (!API_URL || !API_KEY) {
-    throw new Error("❌ API_URL o IQAIR_API_KEY no están definidos");
+    throw new Error('❌ API_URL o IQAIR_API_KEY no están definidos');
   }
 
   const url = `${API_URL}nearest_city?key=${API_KEY}&city=${encodeURIComponent(comuna)}&state=${encodeURIComponent(region)}&country=Chile`;
   logger.info(`🔍 Consultando calidad del aire desde IQAir: ${url}`);
 
   try {
-    const response = await axios.get(url, { timeout: TIMEOUT });
+    const response = await axios.get(url, {timeout: TIMEOUT});
     const pollution = response.data?.data?.current?.pollution;
 
-    if (!pollution || typeof pollution.aqius !== "number") {
-      throw new Error("Datos de contaminación no válidos o incompletos");
+    if (!pollution || typeof pollution.aqius !== 'number') {
+      throw new Error('Datos de contaminación no válidos o incompletos');
     }
 
     return {
       aqi: pollution.aqius,
       main: pollution.mainus,
-      timestamp: pollution.ts,
+      timestamp: pollution.ts
     };
   } catch (error: any) {
     const msg =
       error?.response?.data?.message ||
       error?.response?.data ||
       error?.message ||
-      "Error desconocido";
+      'Error desconocido';
 
-    logger.error("❌ Error al consultar API externa:", msg);
+    logger.error('❌ Error al consultar API externa:', msg);
     throw new Error(`Error al consultar calidad del aire desde IQAir: ${msg}`);
   }
 }

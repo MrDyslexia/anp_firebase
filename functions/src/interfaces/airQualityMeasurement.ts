@@ -20,5 +20,5 @@ export interface AirQualityMeasurement {
     wind_direction: number;
     icon: string;
   };
-  source: "IQAir";
+  source: 'IQAir';
 }

@@ -1,6 +1,6 @@
 // src/alert/events/OnRiskDetected.ts
 
-import { db } from "../../config/firebase";
+import {db} from '../../config/firebase';
 
 export interface EventoRiesgo {
   comuna: string;
@@ -15,9 +15,9 @@ export interface EventoRiesgo {
  * Publica un evento del tipo OnRiskDetected en la colección events.
  */
 export async function emitOnRiskDetected(riesgo: EventoRiesgo) {
-  await db.collection("events").add({
-    type: "OnRiskDetected",
+  await db.collection('events').add({
+    type: 'OnRiskDetected',
     data: riesgo,
-    timestamp: new Date().toISOString(),
+    timestamp: new Date().toISOString()
   });
 }
