@@ -1,21 +1,20 @@
 {
   "name": "functions",
   "scripts": {
-    "lint": "eslint --ext .js,.ts .",
+    "lint": "eslint --ext .js,.ts src/ --fix",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "serve": "npm run build && firebase emulators:start --only functions",
-    "shell": "npm run build && firebase functions:shell",
-    "start": "npm run shell",
+    "serve": "bun run build && firebase emulators:start --only functions",
+    "shell": "bun run build && firebase functions:shell",
+    "start": "bun run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "run-airquality": "ts-node src/triggers/index.ts",
-    "list-collections": "ts-node src/triggers/listCollections.ts",
     "seed:firestore": "ts-node src/scripts/populateFirestore.ts",
-    "format": "prettier --write 'src/**/*.{ts,js}'"
+    "format": "prettier --write 'src/**/*.{ts,js}'",
+    "formatP": "prettier --write ."
   },
   "engines": {
-    "node": "20"
+    "node": "22"
   },
   "main": "lib/index.js",
   "dependencies": {

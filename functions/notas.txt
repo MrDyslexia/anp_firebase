@@ -1,3 +1,0 @@
-obtencion de datos de la ciudad mas cercana a la ubicacion de la ip -> http://api.airvisual.com/v2/nearest_city?key={{YOUR_API_KEY}}
-obtener data mediante coordenadas->http://api.airvisual.com/v2/nearest_city?lat={{LATITUDE}}&lon={{LONGITUDE}}&key={{YOUR_API_KEY}}
-obtencion de datos por ciudad->http://api.airvisual.com/v2/city?city=Concon&state=Valparaiso&country=Chile&key={key}

@@ -13,12 +13,15 @@ const LOCAL_PROJECT_ID = process.env.PROJECT_ID || "arquitectura-en-nube";
 if (!admin.apps.length) {
   if (EMULATOR_MODE) {
     console.log("🔥 Inicializando Firebase Admin en modo EMULADOR");
-    admin.initializeApp({ projectId: LOCAL_PROJECT_ID });
+    admin.initializeApp({projectId: LOCAL_PROJECT_ID});
   } else {
     console.log("☁️ Inicializando Firebase Admin en modo PRODUCCIÓN");
-    const serviceAccountPath = path.resolve(__dirname, "../../serviceAccountKey.json");
+    const serviceAccountPath = path.resolve(
+      __dirname,
+      "../../serviceAccountKey.json"
+    );
     const serviceAccount = require(serviceAccountPath);
-    admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+    admin.initializeApp({credential: admin.credential.cert(serviceAccount)});
   }
 }
 
@@ -35,18 +38,18 @@ const comunasJson = JSON.parse(
 // Mapa de regiones a sus IDs
 const regionNumbers: Record<string, number> = {
   "Arica y Parinacota": 15,
-  "Tarapaca": 1,
-  "Antofagasta": 2,
-  "Atacama": 3,
-  "Coquimbo": 4,
-  "Valparaiso": 5,
+  Tarapaca: 1,
+  Antofagasta: 2,
+  Atacama: 3,
+  Coquimbo: 4,
+  Valparaiso: 5,
   "O'Higgins": 6,
-  "Maule": 7,
-  "Biobio": 8,
-  "Araucania": 9,
+  Maule: 7,
+  Biobio: 8,
+  Araucania: 9,
   "Los Lagos": 10,
-  "Aysen": 11,
-  "Magallanes": 12,
+  Aysen: 11,
+  Magallanes: 12,
   "Santiago Metropolitan": 13,
   "Los Rios": 14
 };
@@ -66,7 +69,7 @@ async function populateFirestore(): Promise<void> {
     }
 
     const regionRef = db.collection("regiones").doc(regionId.toString());
-    await regionRef.set({ id: regionId, name: regionName });
+    await regionRef.set({id: regionId, name: regionName});
     regionRefs[regionName] = regionRef;
 
     console.log(`✅ Región creada: ${regionName} (ID: ${regionId})`);
@@ -82,7 +85,7 @@ async function populateFirestore(): Promise<void> {
       continue;
     }
 
-    for (const comuna of comunas as Array<{ city: string }>) {
+    for (const comuna of comunas as Array<{city: string}>) {
       const comunaId = `comuna_${comunaCounter++}`;
       const comunaRef = db.collection("comunas").doc(comunaId);
 
@@ -92,7 +95,9 @@ async function populateFirestore(): Promise<void> {
         regionRef
       });
 
-      console.log(`🏙️ Comuna registrada: ${comuna.city} (Región: ${regionName})`);
+      console.log(
+        `🏙️ Comuna registrada: ${comuna.city} (Región: ${regionName})`
+      );
     }
   }
 

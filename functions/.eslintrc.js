@@ -6,14 +6,11 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "google",
-    "plugin:@typescript-eslint/recommended",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended" // siempre al final para evitar conflictos
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -21,19 +18,23 @@ module.exports = {
     sourceType: "module",
   },
   ignorePatterns: [
-    "/lib/**/*", // Ignore built files.
-    "/generated/**/*", // Ignore generated files.
+    "lib/**/*", 
+    "generated/**/*",
   ],
   plugins: [
-    "@typescript-eslint", "prettier",
+    "@typescript-eslint",
     "import",
+    "prettier",
   ],
   rules: {
     "quotes": ["error", "double"],
-    "import/no-unresolved": 0,
     "indent": ["error", 2],
+    "max-len": ["warn", {code: 80}],
     "prettier/prettier": "error",
-    "object-curly-spacing": ["error", "never"], // fuerza sin espacios
-    "max-len": ["error", {"code": 80}],
+    "object-curly-spacing": ["error", "never"],
+    "import/no-unresolved": "off",
+    "@typescript-eslint/no-explicit-any": "warn", // warning, no error
+    "require-jsdoc": "off",
+    "valid-jsdoc": "off",
   },
 };

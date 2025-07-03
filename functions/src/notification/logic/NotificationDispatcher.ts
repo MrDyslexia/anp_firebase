@@ -1,6 +1,6 @@
 // src/notification/logic/NotificationDispatcher.ts
 
-import { admin } from "../../config/firebase";
+import {admin} from '../../config/firebase';
 
 interface NotificationPayload {
   title: string;
@@ -10,13 +10,16 @@ interface NotificationPayload {
 /**
  * Envia una notificación push a un dispositivo mediante FCM.
  */
-export async function sendNotification(token: string, payload: NotificationPayload) {
+export async function sendNotification(
+  token: string,
+  payload: NotificationPayload
+) {
   const message = {
     notification: {
       title: payload.title,
-      body: payload.body,
+      body: payload.body
     },
-    token,
+    token
   };
 
   await admin.messaging().send(message);
