@@ -1,6 +1,6 @@
-const admin = require('firebase-admin');
-const fs = require('fs');
-
+//const admin = require('firebase-admin');
+import fs from 'fs';
+import admin from firebase-admin;
 // Inicializar Firebase Admin con tus credenciales
 const serviceAccount = require('../../serviceAccountKey.json'); // <-- reemplaza con tu archivo
 
