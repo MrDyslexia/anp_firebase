@@ -7,24 +7,22 @@ import {
 } from './controllers/AmbassadorController';
 import * as logger from 'firebase-functions/logger';
 import {fetchDailyMeasurements} from './AirQualityService';
-export {fetchDailyMeasurements};
 import {
   getAirQualityByComuna,
-  getAirQualityHistory
+  getAirQualityHistory,
+  getAllComunaData
 } from './controllers/PublicQueryController';
-export {getAirQualityByComuna};
-export {getAirQualityHistory};
 import {
   setUserPreferences,
   getUserPreferences
 } from './controllers/PreferencesController';
-
 import {
   guardarMedicion,
   getAirQualityStatus
 } from './controllers/DataController';
-
+import {validateToken} from './middleware/auth';
 export {setUserPreferences, getUserPreferences};
+export {fetchDailyMeasurements};
 export const testAPI = onRequest(
   {region: 'southamerica-west1'},
   async (req, res) => {
@@ -56,6 +54,7 @@ export const listarComunas = onRequest(
   {region: 'southamerica-west1'},
   async (req, res) => {
     try {
+      await validateToken(req);
       const snapshot = await db.collection('comunas').limit(10).get(); // muestra 10
       const comunas = snapshot.docs.map((doc) => doc.data());
       res.json(comunas);
@@ -78,7 +77,6 @@ export const listarColecciones = onRequest(
     }
   }
 );
-// functions/src/runDailyIngestion.ts
 export const runDailyIngestion = onRequest(
   {region: 'southamerica-west1'},
   async (_req, res) => {
@@ -146,3 +144,6 @@ export const testComunaManual = onRequest(
   }
 );
 export {onNewIngestionJob} from './triggers/IngestionTrigger';
+export {getAllComunaData};
+export {getAirQualityByComuna};
+export {getAirQualityHistory};
