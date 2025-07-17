@@ -1,6 +1,6 @@
 //const admin = require('firebase-admin');
 import fs from 'fs';
-import admin from firebase-admin;
+import admin from 'firebase-admin';
 // Inicializar Firebase Admin con tus credenciales
 import serviceAccount from "../../serviceAccountKey.json" assert {type: "json"};
 
