@@ -19,16 +19,19 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Instalar dependencias
+      - name: Instalar dependencias en /functions
+        working-directory: functions
         run: bun install --no-cache
 
       - name: Ejecutar Linter
+        working-directory: functions
         run: bun run lint
 
-      - name: Validar formato Prettier
+      - name: Verificar formato Prettier
+        working-directory: functions
         run: bun run format
 
-      - name: Ejecutar Gitleaks (detección de secretos)
+      - name: Ejecutar Gitleaks
         uses: gitleaks/gitleaks-action@v2
         with:
           args: detect --source=. --no-banner
