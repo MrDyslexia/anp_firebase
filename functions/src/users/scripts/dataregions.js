@@ -2,7 +2,7 @@
 import fs from 'fs';
 import admin from firebase-admin;
 // Inicializar Firebase Admin con tus credenciales
-const serviceAccount = require('../../serviceAccountKey.json'); // <-- reemplaza con tu archivo
+import serviceAccount from "../../serviceAccountKey.json" assert {type: "json"};
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
